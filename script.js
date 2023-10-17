@@ -143,7 +143,7 @@ function showSuggestions(results, inputVal) {
 
 function useSuggestion(e) {
   // TODO
-  if (e.target.tagname === 'LI') {
+  if (e.target.tagName === 'LI') {
     let selectedSuggestions = e.target.textContent;
     inputVal = selectedSuggestions;
     suggestions.innerHTML = ''; // Clear the suggestions
