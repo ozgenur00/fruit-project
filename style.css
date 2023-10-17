@@ -75,3 +75,9 @@ ul.has-suggestions {
   background: rgba(240, 248, 255, 0.384);
   z-index: 1;
 }
+
+.jasmine_html-reporter {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
