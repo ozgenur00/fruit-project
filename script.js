@@ -152,3 +152,51 @@ function useSuggestion(e) {
 
 input.addEventListener('keyup', searchHandler);
 suggestions.addEventListener('click', useSuggestion);
+
+
+//----------------------------------jasmine testing---------------------------
+
+describe('Autocomplete functionality', function () {
+  beforeEach(function () {
+    // Before each test, reset the input value and suggestions list
+    document.querySelector('#fruit').value = '';
+    document.querySelector('.suggestions ul').innerHTML = '';
+  });
+
+  it('should filter results based on user input', function () {
+    const results = search('app');
+    expect(results).toContain('Apple');
+    expect(results).not.toContain('Banana');
+  });
+
+  it('should display suggestions container when there are results', function () {
+    const input = document.querySelector('#fruit');
+    const suggestionsContainer = document.querySelector('.suggestions');
+
+    input.value = 'app';
+    searchHandler({ target: input });
+
+    expect(suggestionsContainer.style.display).toBe('block');
+  });
+
+  it('should hide suggestions container when input is empty', function () {
+    const input = document.querySelector('#fruit');
+    const suggestionsContainer = document.querySelector('.suggestions');
+
+    input.value = '';
+    searchHandler({ target: input });
+
+    expect(suggestionsContainer.style.display).toBe('none');
+  });
+
+  it('should populate the suggestions list based on input', function () {
+    const input = document.querySelector('#fruit');
+    const suggestionsList = document.querySelector('.suggestions ul');
+
+    input.value = 'apple';
+    searchHandler({ target: input });
+
+    expect(suggestionsList.children.length).toBeGreaterThan(0);
+    expect(suggestionsList.querySelector('li').textContent).toBe('Apple');
+  });
+});
